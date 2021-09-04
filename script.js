@@ -51,7 +51,7 @@ function updateTable() {
   while (table.rows.length > 1) table.deleteRow(-1);
 
   for (let [name, link] of stickers.entries()) {
-    if (checkNameCollision(name)) continue;
+    // if (checkNameCollision(name)) continue;
 
     const row = table.insertRow(-1);
     row.insertCell(0).textContent = name;
@@ -70,10 +70,11 @@ function updateTable() {
   }
 }
 
-function checkNameCollision(name) {
-  return !![...table.rows].filter((row) => row.cells[0].textContent == name)
-    .length;
-}
+// function checkNameCollision(name) {
+//   return !![...table.rows].filter((row) => row.cells[0].textContent == name)
+//     .length;
+// }
+
 function saveStickers() {
   localStorage.clear();
   for (let [name, link] of stickers.entries()) {

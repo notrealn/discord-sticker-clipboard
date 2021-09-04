@@ -1,105 +1,68 @@
-let stickers = [
-  {
-    name: "xdxdxd",
-    link: "https://media.discordapp.net/stickers/861052158991925269.png?size=128",
-  },
-  {
-    name: "stop talking",
-    link: "https://images-ext-2.discordapp.net/external/J-GAllf6no6RiG4rccAzx3sbdr8bOGcilpfvbYZefs0/%3Fsize%3D128/https/media.discordapp.net/stickers/871788601875267725.png?size=128",
-  },
-];
+const byId = id => document.getElementById(id);
+const stickers = new Map();
+stickers.set("xdxdxd", "https://media.discordapp.net/stickers/861052158991925269.png?size=128");
+stickers.set("stop talking", "https://images-ext-2.discordapp.net/external/J-GAllf6no6RiG4rccAzx3sbdr8bOGcilpfvbYZefs0/%3Fsize%3D128/https/media.discordapp.net/stickers/871788601875267725.png?size=128");
 
-savedCookies = getCookies();
-if (savedCookies) stickers = savedCookies;
+for(let i = 0; i < localStorage.length; i++) {
+	const name = localStorage.key(i);
+	stickers.set(name, localStorage.getItem(name));
+}
 
-const table = document.querySelector("#table");
-
-const stickerButton = document.querySelector("#addSticker");
+const table = byId("table");
+const stickerButton = byId("addSticker");
 stickerButton.onclick = (e) => {
-  inputName = document.querySelector("#inputName").value;
-  inputLink = document.querySelector("#inputLink").value;
+	inputName = byId("inputName").value;
+	inputLink = byId("inputLink").value;
 
-  console.log(inputName, inputLink);
-  if (!inputName || !inputLink) return alert("please fill in empty values");
-  if (stickers.filter((sticker) => sticker.name == inputName).length)
-    return alert("please choose different name");
+	if (!inputName || !inputLink) return alert("please fill in empty values");
+	if (stickers.has(inputName)) return alert("please choose different name");
 
-  stickers.push({
-    name: inputName,
-    link: inputLink,
-  });
-
-  updateTable();
-  setCookies();
+	stickers.set(inputName, inputLink);
+	updateTable();
+	saveStickers();
 };
 
-const importButton = document.querySelector("#import");
-const exportButton = document.querySelector("#export");
-importButton.onclick = () => {
-  navigator.clipboard.readText().then((clipboard) => {
-    try {
-      const foo = JSON.parse(clipboard);
-      console.log(foo);
-
-      if (
-        !Array.isArray(foo) ||
-        foo.filter((obj) => !obj.name || !obj.link).length
-      )
-        throw "invalid json";
-
-      stickers = foo;
-
-      updateTable();
-      setCookies();
-    } catch (err) {
-      alert(err);
-    }
-  });
+const importButton = byId("import");
+const exportButton = byId("export");
+importButton.onclick = async () => {
+	const text = await navigator.clipboard.readText();
+	try {
+		stickers = new Map(JSON.parse(clipboard));
+		updateTable();
+		saveStickers();
+	} catch {
+		alert("invalid json");
+	}
 };
 
 exportButton.onclick = () => {
-  navigator.clipboard.writeText(JSON.stringify(stickers));
+	const json = JSON.stringify([...stickers.entries()]);
+	navigator.clipboard.writeText(json);
 };
 
-updateTable();
-
 function updateTable() {
-  // while (table.rows.length > 1) table.deleteRow(-1);
+	while (table.rows.length) table.deleteRow(0);
+	for (let [name, link] of stickers.entries()) {
+		const row = table.insertRow(-1);
+		const btn = document.createElement("button");
+		
+		btn.textContent = link;
+		btn.className = "btn btn-sm classless";
+		btn.onclick = (e) => {
+			console.log(e, link);
+			navigator.clipboard.writeText(link);
+		};
 
-  for (const sticker of stickers) {
-    if (checkTableNameCollision(sticker.name)) continue;
-
-    const row = table.insertRow(-1);
-    row.insertCell(0).textContent = sticker.name;
-
-    const btn = document.createElement("button");
-    const link = sticker.link;
-    btn.textContent = link;
-    btn.className = "btn btn-sm classless";
-    btn.onclick = (e) => {
-      navigator.clipboard.writeText(link);
-
-      console.log("copied " + link);
-    };
-
-    const foo = row.insertCell(1);
-    foo.appendChild(btn);
-  }
+		row.insertCell(0).textContent = name;
+		row.insertCell(1).appendChild(btn);
+	}
 }
 
-function checkTableNameCollision(name) {
-  return !![...table.rows].filter((row) => row.cells[0].textContent == name)
-    .length;
+function saveStickers() {
+	localStorage.clear();
+	for (let [name, link] of stickers.entries()) {
+		localStorage.setItem(name, link);
+	}
 }
 
-function getCookies() {
-  const cookies = document.cookie.split(";").map((item) => item.trim());
-
-  for (const cookie of cookies) {
-    if (cookie.startsWith("stickers=")) return JSON.parse(cookie.slice(9));
-  }
-}
-
-function setCookies() {
-  document.cookie = "stickers=" + JSON.stringify(stickers);
-}
+updateTable();

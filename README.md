@@ -7,3 +7,5 @@ Discord stickers are just links. You can copy them and paste the links for the s
 To get the link of a sticker, go into inspect->sources->media.discordapp.net->stickers and find the one with the matching id. Getting the link of an emoji is even easier, just right click on it.
 
 Also works for emojis and copypastas.
+
+If you want to add/remove/change the default stickers, you can open a PR.

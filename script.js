@@ -14,8 +14,8 @@ if (savedCookies) stickers = savedCookies;
 
 const table = document.querySelector("#table");
 
-const button = document.querySelector("#addSticker");
-button.onclick = (e) => {
+const stickerButton = document.querySelector("#addSticker");
+stickerButton.onclick = (e) => {
   inputName = document.querySelector("#inputName").value;
   inputLink = document.querySelector("#inputLink").value;
 
@@ -31,6 +31,34 @@ button.onclick = (e) => {
 
   updateTable();
   setCookies();
+};
+
+const importButton = document.querySelector("#import");
+const exportButton = document.querySelector("#export");
+importButton.onclick = () => {
+  navigator.clipboard.readText().then((clipboard) => {
+    try {
+      const foo = JSON.parse(clipboard);
+      console.log(foo);
+
+      if (
+        !Array.isArray(foo) ||
+        foo.filter((obj) => !obj.name || !obj.link).length
+      )
+        throw "invalid json";
+
+      stickers = foo;
+
+      updateTable();
+      setCookies();
+    } catch (err) {
+      alert(err);
+    }
+  });
+};
+
+exportButton.onclick = () => {
+  navigator.clipboard.writeText(JSON.stringify(stickers));
 };
 
 updateTable();

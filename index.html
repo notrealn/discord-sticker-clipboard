@@ -1,9 +1,23 @@
 <html>
   <head>
-    <!-- something -->
+    <title>Sticker Clipboard</title>
+
+    <link rel="stylesheet" href="mincss.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    read if dum
-    <script src="index.js"></script>
+    <p>Uses cookies to save stickers. Click link to copy.</p>
+    <div id="inputs">
+      <input type="text" placeholder="Name" id="inputName" />
+      <input type="text" placeholder="Link" id="inputLink" />
+      <button class="btn btn-sm btn-b" id="addSticker">Add</button>
+    </div>
+    <table id="table" class="table">
+      <tr>
+        <th>Name</th>
+        <th>Link</th>
+      </tr>
+    </table>
+    <script src="script.js"></script>
   </body>
 </html>

@@ -48,7 +48,7 @@ exportButton.onclick = () => {
 };
 
 function updateTable() {
-  // while (table.rows.length > 1) table.deleteRow(-1);
+  while (table.rows.length > 1) table.deleteRow(-1);
 
   for (let [name, link] of stickers.entries()) {
     if (checkNameCollision(name)) continue;

@@ -2,12 +2,28 @@ const byId = (id) => document.getElementById(id);
 let stickers = new Map();
 
 stickers.set(
+  "ohno",
+  "https://cdn.discordapp.com/emojis/827536618293821490.png?v=1"
+);
+stickers.set(
   "xdxdxd",
   "https://media.discordapp.net/stickers/861052158991925269.png?size=128"
 );
 stickers.set(
   "stop talking",
   "https://images-ext-2.discordapp.net/external/J-GAllf6no6RiG4rccAzx3sbdr8bOGcilpfvbYZefs0/%3Fsize%3D128/https/media.discordapp.net/stickers/871788601875267725.png?size=128"
+);
+stickers.set(
+  "delete this above me",
+  "https://media.discordapp.net/stickers/867203981435994133.png?size=512"
+);
+stickers.set(
+  "freenode blocked copypasta",
+  "I have put you on a permanent ignore, public and private. I have found you disturbing, rude and generally not worth talking to. According to the channels you hang on, it strengtens the effect of wanting to put you on ignore because of my lack of interest in you as a person. This message is not meant to be rude to you, just to inform you."
+);
+stickers.set(
+  "rhino sucks",
+  "https://images-ext-1.discordapp.net/external/EabST366XDGXkWWTy5WjiW3qC7OPcRXVXSBP_1JtHJw/%3Fsize%3D64/https/cdn.discordapp.com/emojis/823312543887130664.png"
 );
 
 for (let i = 0; i < localStorage.length; i++) {

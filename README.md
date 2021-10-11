@@ -1,4 +1,4 @@
-# Discord Sticker Cliboard
+# Discord Sticker Clipboard
 
 Stickers for poor people.
 

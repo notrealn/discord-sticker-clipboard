@@ -17,9 +17,9 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "/",
+  "start_url": "discord-sticker-clipboard/",
   "background_color": "#FFFFFF",
   "display": "standalone",
-  "scope": "/",
+  "scope": "discord-sticker-clipboard/",
   "theme_color": "#DDDDDD"
 }

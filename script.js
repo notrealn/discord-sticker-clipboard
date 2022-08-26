@@ -1,5 +1,5 @@
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register("/serviceworker.js");
+  navigator.serviceWorker.register("discord-sticker-clipboard/serviceworker.js");
 }
 
 const byId = (id) => document.getElementById(id);

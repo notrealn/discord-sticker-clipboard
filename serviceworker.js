@@ -1,10 +1,10 @@
 const urlsToCache = [
-  "/",
+  // "/",
   "/script.js",
   "/style.css",
   "/mincss.css",
   "/manifest.json",
-  "/assets/sticker-clipboard.png",
+  "/assets/sticker-clipboard-192.png",
 ];
 
 self.addEventListener("install", (event) => {

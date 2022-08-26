@@ -1,18 +1,16 @@
-const repoName = "discord-sticker-clipboard"
-
 const urlsToCache = [
-  "/",
-  "/script.js",
-  "/style.css",
-  "/mincss.css",
-  "/manifest.json",
-  "/assets/sticker-clipboard.png",
+  new Request("/", { cache: "reload" }),
+  "script.js",
+  "style.css",
+  "mincss.css",
+  "manifest.json",
+  "assets/sticker-clipboard.png",
 ];
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("h").then((cache) => {
-      return cache.addAll(urlsToCache.map((url) => repoName + url));
+      return cache.addAll(urlsToCache);
     })
   );
 

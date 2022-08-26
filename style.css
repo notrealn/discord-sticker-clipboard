@@ -1,7 +1,7 @@
 body {
   /* font-family: Arial, Helvetica, sans-serif; */
   padding: 8px;
-  /* background-color: blanchedalmond; */
+  font-size: 16px;
 }
 
 /* table {
@@ -13,6 +13,10 @@ th,
 td {
   /* border: 1px solid black; */
   padding: 8px;
+}
+
+.btn {
+  color: black;
 }
 
 #inputs {

@@ -1,0 +1,25 @@
+
+{
+  "short_name": "clipboard",
+  "name": "discord sticker clipboard",
+  "description": "save stickers and stuff for discord.",
+  "icons": [
+    {
+      "src": "assets/sticker-clipboard-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/sticker-clipboard-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#DDDDDD"
+}

@@ -1,3 +1,7 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register("/serviceworker.js");
+}
+
 const byId = (id) => document.getElementById(id);
 let stickers = new Map();
 

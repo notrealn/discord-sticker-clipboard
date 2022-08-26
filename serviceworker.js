@@ -1,5 +1,3 @@
-const repoName = "discord-sticker-clipboard"
-
 const urlsToCache = [
   "/",
   "/script.js",
@@ -12,7 +10,7 @@ const urlsToCache = [
 self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("h").then((cache) => {
-      return cache.addAll(urlsToCache.map((url) => repoName + url));
+      return cache.addAll(urlsToCache);
     })
   );
 
